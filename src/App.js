@@ -114,7 +114,7 @@ class App extends Component {
     let dataCopy = JSON.parse(JSON.stringify(this.state.data));
     dataCopy[id - 1].isPaused = false;
     dataCopy[id - 1].activity.push({
-      code: 5,
+      code: 4,
       type: "resume",
       activityBy: this.userNames[
         Math.floor(Math.random() * this.userNames.length)
