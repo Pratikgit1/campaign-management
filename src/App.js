@@ -14,7 +14,7 @@ class App extends Component {
       "simply dummy text of the printing",
       "Awesome",
       "Great Job",
-      "Isse campaign of the year milega"
+      "baan gaya mera campaign of the year"
     ];
     this.state = {
       addNew: true,
@@ -27,7 +27,6 @@ class App extends Component {
           createdBy: "Chirag",
           isRenamed: false,
           isPaused: false,
-          previousName: "",
           activity: [
             {
               code: 0,
@@ -44,7 +43,6 @@ class App extends Component {
           createdBy: "Chirag",
           isRenamed: false,
           isPaused: false,
-          previousName: "",
           activity: [
             {
               code: 0,
@@ -61,7 +59,6 @@ class App extends Component {
           createdBy: "Chirag",
           isRenamed: false,
           isPaused: false,
-          previousName: "",
           activity: [
             {
               code: 0,
@@ -156,7 +153,7 @@ class App extends Component {
 
   onRename = id => {
     let dataCopy = JSON.parse(JSON.stringify(this.state.data));
-    dataCopy[id - 1].previousName = dataCopy[id - 1].name;
+    const oldName = dataCopy[id - 1].name;
     dataCopy[id - 1].name = this.campaignNames[
       Math.floor(Math.random() * this.campaignNames.length)
     ];
@@ -164,6 +161,8 @@ class App extends Component {
     dataCopy[id - 1].activity.push({
       code: 3,
       type: "rename",
+      name: dataCopy[id - 1].name,
+      previousName: oldName,
       activityBy: this.userNames[
         Math.floor(Math.random() * this.userNames.length)
       ],

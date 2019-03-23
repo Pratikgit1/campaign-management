@@ -33,16 +33,18 @@ class History extends Component {
         }`;
         break;
       case 1:
-        body = "pause";
+        body = `Campaign paused by ${data.activityBy}`;
         break;
       case 2:
-        body = "comment";
+        body = `Comment added by ${data.activityBy} "${data.comment}"`;
         break;
       case 3:
-        body = "renamed";
+        body = `Campaign renamed by ${data.activityBy} from ${
+          data.previousName
+        } to ${data.name}`;
         break;
       case 4:
-        body = "resume";
+        body = `Campaign resumed by ${data.activityBy}`;
         break;
     }
     return body;
@@ -54,18 +56,22 @@ class History extends Component {
         <i className="fa fa-history mr-2" aria-hidden="true" /> History
         <ul className="timeline">
           {this.props.selectedId > 0
-            ? this.props.data[this.props.selectedId - 1].activity.map(x => (
-                <li className="timeline-inverted">
-                  <div className={"timeline-badge " + this.getType(x.code)}>
-                    <i className="fa fa-play-circle-o" />
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-body">
-                      <p>{this.getBody(x)}</p>
+            ? this.props.data[this.props.selectedId - 1].activity.map(
+                (item, index) => (
+                  <li className="timeline-inverted" key={item.code + index * 3}>
+                    <div
+                      className={"timeline-badge " + this.getType(item.code)}
+                    >
+                      <i className="fa fa-play-circle-o" />
                     </div>
-                  </div>
-                </li>
-              ))
+                    <div className="timeline-panel">
+                      <div className="timeline-body">
+                        <p>{this.getBody(item)}</p>
+                      </div>
+                    </div>
+                  </li>
+                )
+              )
             : ""}
         </ul>
       </div>
