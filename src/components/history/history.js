@@ -84,7 +84,7 @@ class History extends Component {
   render() {
     return (
       <div className="l-align-history pt-4">
-        <i className="fa fa-history mr-2" aria-hidden="true" /> History
+        <i className="fa fa-history mr-2" aria-hidden="true" /> <b>History</b>
         <div className="pt-2">
           <b>
             {this.props.selectedId > 0
