@@ -3,7 +3,7 @@ import "./header.scss";
 
 class Header extends Component {
   createNew = () => {
-    this.props.createNew("x");
+    this.props.createNew(true);
   };
   render() {
     return (

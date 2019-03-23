@@ -8,12 +8,151 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      addNew: ""
+      addNew: true,
+      data: [
+        {
+          id: 1,
+          name: "Emails",
+          createdAt: "2:30 pm",
+          createdBy: "Chirag",
+          isRenamed: false,
+          isPaused: false,
+          previousName: "",
+          activity: [
+            {
+              code: 0,
+              type: "created",
+              activityBy: "userName",
+              dateTime: new Date()
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: "Push notification",
+          createdAt: "2:30 pm",
+          createdBy: "Chirag",
+          isRenamed: false,
+          isPaused: false,
+          previousName: "",
+          activity: [
+            {
+              code: 0,
+              type: "created",
+              activityBy: "userName",
+              dateTime: new Date()
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: "InApp Messages",
+          createdAt: "2:30 pm",
+          createdBy: "Chirag",
+          isRenamed: false,
+          isPaused: false,
+          previousName: "",
+          activity: [
+            {
+              code: 0,
+              type: "created",
+              activityBy: "userName",
+              dateTime: new Date()
+            }
+          ]
+        }
+      ]
     };
   }
 
   onNewClick = x => {
-    this.setState({ addNew: x });
+    this.setState({
+      data: [
+        ...this.state.data,
+        {
+          id: this.state.data.length + 1,
+          name: "InApp Messages",
+          createdAt: "2:30 pm",
+          createdBy: "Chirag",
+          isRenamed: false,
+          isPaused: false,
+          previousName: "",
+          activity: [
+            {
+              code: 0,
+              type: "created",
+              activityBy: "userName",
+              dateTime: new Date()
+            }
+          ]
+        }
+      ]
+    });
+  };
+
+  updatedData = data => {
+    console.log(data);
+    this.setState({ data });
+  };
+
+  onResume = id => {
+    let dataCopy = JSON.parse(JSON.stringify(this.state.data));
+    dataCopy[id - 1].isPaused = false;
+    dataCopy[id - 1].activity.push({
+      code: 5,
+      type: "resume",
+      activityBy: "userName",
+      dateTime: new Date()
+    });
+    this.setState({ data: dataCopy });
+  };
+
+  onPause = id => {
+    let dataCopy = JSON.parse(JSON.stringify(this.state.data));
+    dataCopy[id - 1].isPaused = true;
+    dataCopy[id - 1].activity.push({
+      code: 1,
+      type: "pause",
+      activityBy: "userName",
+      dateTime: new Date()
+    });
+    this.setState({ data: dataCopy });
+  };
+
+  onComment = id => {
+    let dataCopy = JSON.parse(JSON.stringify(this.state.data));
+    dataCopy[id - 1].activity.push({
+      code: 2,
+      type: "comment",
+      comment: "this is a sample comment",
+      activityBy: "userName",
+      dateTime: new Date()
+    });
+    this.setState({ data: dataCopy });
+  };
+
+  onRename = id => {
+    let dataCopy = JSON.parse(JSON.stringify(this.state.data));
+    dataCopy[id - 1].previousName = dataCopy[id - 1].name;
+    dataCopy[id - 1].name = "Rename";
+    dataCopy[id - 1].isRenamed = true;
+    dataCopy[id - 1].activity.push({
+      code: 3,
+      type: "rename",
+      activityBy: "userName",
+      dateTime: new Date()
+    });
+    this.setState({ data: dataCopy });
+  };
+
+  onDelete = id => {
+    this.setState({
+      data: this.state.data.filter(x => {
+        if (x.id !== id) {
+          return x;
+        }
+      })
+    });
   };
 
   render() {
@@ -27,10 +166,19 @@ class App extends Component {
 
         <div className="row">
           <div className="col-8 l-scoller">
-            <Campaigns addNew={this.state.addNew} />
+            <Campaigns
+              addNew={this.state.addNew}
+              data={this.state.data}
+              updatedData={this.updatedData}
+              onComment={this.onComment}
+              onResume={this.onResume}
+              onDelete={this.onDelete}
+              onPause={this.onPause}
+              onRename={this.onRename}
+            />
           </div>
           <div className="col-4 bg-warning">
-            <History />
+            <History data={this.state.data} />
           </div>
         </div>
       </div>
