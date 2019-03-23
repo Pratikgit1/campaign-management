@@ -1,0 +1,8 @@
+.l-scoller {
+  height: calc(100vh - 121px);
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

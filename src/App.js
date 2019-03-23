@@ -1,25 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Header from "./components/header/header";
+import History from "./components/history/history";
+import Campaigns from "./components/campaigns/campaigns";
+import "./App.scss";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      addNew: ""
+    };
+  }
+
+  onNewClick = x => {
+    this.setState({ addNew: x });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <Header createNew={this.onNewClick} />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-8 l-scoller">
+            <Campaigns addNew={this.state.addNew} />
+          </div>
+          <div className="col-4 bg-warning">
+            <History />
+          </div>
+        </div>
       </div>
     );
   }
