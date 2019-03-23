@@ -35,7 +35,7 @@ class Campaigns extends Component {
             key={x.id}
             id={"campaign" + x.id}
             onClick={() => this.handleSelection(x.id)}
-            className="col-12 pt-2 pb-2 l-items"
+            className="col-12 pt-2 pb-2 l-items p-3"
           >
             <div className="col-8 l-info">
               <div>
