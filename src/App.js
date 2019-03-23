@@ -77,7 +77,7 @@ class App extends Component {
       data: [
         ...this.state.data,
         {
-          id: this.state.data.length + 1,
+          id: this.state.data[this.state.data.length - 1].id + 1,
           name: this.campaignNames[
             Math.floor(Math.random() * this.campaignNames.length)
           ],

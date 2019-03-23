@@ -30,14 +30,17 @@ class Campaigns extends Component {
   render() {
     return (
       <div className="row">
-        {this.state.data.map(x => (
+        {this.state.data.map((x, index) => (
           <div
             key={x.id}
             id={"campaign" + x.id}
             onClick={() => this.handleSelection(x.id)}
             className="col-12 pt-2 pb-2 l-items p-3"
           >
-            <div className="col-8 l-info">
+            <div className="col-1">
+              <div className="l-numbering">{index + 1}</div>
+            </div>
+            <div className="col-7 l-info">
               <div>
                 <b>
                   Campaign {x.id} - {x.name}
