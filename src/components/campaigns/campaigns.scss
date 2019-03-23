@@ -1,0 +1,41 @@
+.l-items {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.l-white {
+  background: white;
+}
+
+.fa,
+.l-info {
+  color: #b1b1b1;
+  pointer-events: none;
+}
+
+.l-selection {
+  background: #f6fffb;
+  .l-info {
+    color: #31393f;
+    pointer-events: initial;
+  }
+  .fa {
+    pointer-events: initial;
+  }
+  .fa-pencil {
+    color: #0095ff;
+  }
+  .fa-trash {
+    color: #d65e17;
+  }
+  .fa-pause-circle-o {
+    color: #ffbc00;
+  }
+  .fa-play-circle-o {
+    color: #ffbc00;
+  }
+  .fa-comments-o {
+    color: #1fd824;
+  }
+}

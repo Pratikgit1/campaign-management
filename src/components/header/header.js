@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-12 l-header bg-warning">
+        <div className="col-12 l-header">
           <i className="fa fa-envelope mr-2" aria-hidden="true" />{" "}
           <b>All Campaigns</b>
         </div>

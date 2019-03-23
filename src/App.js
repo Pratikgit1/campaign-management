@@ -18,6 +18,7 @@ class App extends Component {
     ];
     this.state = {
       addNew: true,
+      selectedId: 0,
       data: [
         {
           id: 1,
@@ -181,6 +182,10 @@ class App extends Component {
     });
   };
 
+  selectedItem = id => {
+    this.setState({ selectedId: id });
+  };
+
   render() {
     return (
       <div className="container-fluid">
@@ -201,10 +206,14 @@ class App extends Component {
               onDelete={this.onDelete}
               onPause={this.onPause}
               onRename={this.onRename}
+              selectedItem={this.selectedItem}
             />
           </div>
-          <div className="col-4 bg-warning">
-            <History data={this.state.data} />
+          <div className="col-4 l-history">
+            <History
+              data={this.state.data}
+              selectedId={this.state.selectedId}
+            />
           </div>
         </div>
       </div>

@@ -6,17 +6,16 @@ class History extends Component {
     return (
       <div>
         <i className="fa fa-history mr-2" aria-hidden="true" /> History
-        {this.props.data.map(x =>
-          x.activity.map(y => (
-            <div>
-              {y.code}
-              {y.type}
-              {y.comment}
-              {y.activityBy}
-              {/* {y.dateTime.toDateString()} */}
-            </div>
-          ))
-        )}
+        {this.props.selectedId > 0
+          ? this.props.data[this.props.selectedId - 1].activity.map(x => (
+              <div>
+                {x.code}
+                {x.type}
+                {x.comment}
+                {x.activityBy}
+              </div>
+            ))
+          : ""}
       </div>
     );
   }
