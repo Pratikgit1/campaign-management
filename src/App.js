@@ -7,6 +7,15 @@ import "./App.scss";
 class App extends Component {
   constructor() {
     super();
+    this.campaignNames = ["SMS", "Facebook", "Twitter", "YouTube", "Google"];
+    this.userNames = ["Arijit Patra", "Cool Name", "Happy", "Siri", "Alexa"];
+    this.sampleComment = [
+      "Lorem Ipsum is not simply random text but simply timepass text lol",
+      "simply dummy text of the printing",
+      "Awesome",
+      "Great Job",
+      "Isse campaign of the year milega"
+    ];
     this.state = {
       addNew: true,
       data: [
@@ -71,9 +80,13 @@ class App extends Component {
         ...this.state.data,
         {
           id: this.state.data.length + 1,
-          name: "InApp Messages",
+          name: this.campaignNames[
+            Math.floor(Math.random() * this.campaignNames.length)
+          ],
           createdAt: "2:30 pm",
-          createdBy: "Chirag",
+          createdBy: this.userNames[
+            Math.floor(Math.random() * this.userNames.length)
+          ],
           isRenamed: false,
           isPaused: false,
           previousName: "",
@@ -81,7 +94,9 @@ class App extends Component {
             {
               code: 0,
               type: "created",
-              activityBy: "userName",
+              activityBy: this.userNames[
+                Math.floor(Math.random() * this.userNames.length)
+              ],
               dateTime: new Date()
             }
           ]
@@ -91,7 +106,6 @@ class App extends Component {
   };
 
   updatedData = data => {
-    console.log(data);
     this.setState({ data });
   };
 
@@ -101,7 +115,9 @@ class App extends Component {
     dataCopy[id - 1].activity.push({
       code: 5,
       type: "resume",
-      activityBy: "userName",
+      activityBy: this.userNames[
+        Math.floor(Math.random() * this.userNames.length)
+      ],
       dateTime: new Date()
     });
     this.setState({ data: dataCopy });
@@ -113,7 +129,9 @@ class App extends Component {
     dataCopy[id - 1].activity.push({
       code: 1,
       type: "pause",
-      activityBy: "userName",
+      activityBy: this.userNames[
+        Math.floor(Math.random() * this.userNames.length)
+      ],
       dateTime: new Date()
     });
     this.setState({ data: dataCopy });
@@ -124,8 +142,12 @@ class App extends Component {
     dataCopy[id - 1].activity.push({
       code: 2,
       type: "comment",
-      comment: "this is a sample comment",
-      activityBy: "userName",
+      comment: this.sampleComment[
+        Math.floor(Math.random() * this.sampleComment.length)
+      ],
+      activityBy: this.userNames[
+        Math.floor(Math.random() * this.userNames.length)
+      ],
       dateTime: new Date()
     });
     this.setState({ data: dataCopy });
@@ -134,12 +156,16 @@ class App extends Component {
   onRename = id => {
     let dataCopy = JSON.parse(JSON.stringify(this.state.data));
     dataCopy[id - 1].previousName = dataCopy[id - 1].name;
-    dataCopy[id - 1].name = "Rename";
+    dataCopy[id - 1].name = this.campaignNames[
+      Math.floor(Math.random() * this.campaignNames.length)
+    ];
     dataCopy[id - 1].isRenamed = true;
     dataCopy[id - 1].activity.push({
       code: 3,
       type: "rename",
-      activityBy: "userName",
+      activityBy: this.userNames[
+        Math.floor(Math.random() * this.userNames.length)
+      ],
       dateTime: new Date()
     });
     this.setState({ data: dataCopy });
