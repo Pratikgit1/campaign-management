@@ -27,13 +27,11 @@ class History extends Component {
     return type;
   };
 
-  getBody = data => {
+  getBody = (data, id) => {
     let body;
     switch (data.code) {
       case 0:
-        body = `Campaign created by ${
-          this.props.data[this.props.selectedId - 1].createdBy
-        }`;
+        body = `Campaign created by ${this.getDataObject(id)[0].createdBy}`;
         break;
       case 1:
         body = `Campaign paused by ${data.activityBy}`;
@@ -81,6 +79,24 @@ class History extends Component {
     return icon;
   };
 
+  getName = id => {
+    let data = this.props.data.filter(x => {
+      if (x.id === id) {
+        return x;
+      }
+    });
+    return data[0].name;
+  };
+
+  getDataObject = id => {
+    let data = this.props.data.filter(x => {
+      if (x.id === id) {
+        return x;
+      }
+    });
+    return data;
+  };
+
   render() {
     return (
       <div className="l-align-history pt-4">
@@ -92,14 +108,14 @@ class History extends Component {
               ? "Campaign " +
                 this.props.selectedId +
                 " - " +
-                this.props.data[this.props.selectedId - 1].name
+                this.getName(this.props.selectedId)
               : ""}
           </b>
         </div>
         <div className="l-scroll-history">
           <ul className="timeline mt-3">
             {this.props.selectedId > 0
-              ? this.props.data[this.props.selectedId - 1].activity.map(
+              ? this.getDataObject(this.props.selectedId)[0].activity.map(
                   (item, index) => (
                     <li
                       className="timeline-inverted"
@@ -112,7 +128,7 @@ class History extends Component {
                       </div>
                       <div className="timeline-panel">
                         <div className="timeline-body">
-                          <p>{this.getBody(item)}</p>
+                          <p>{this.getBody(item, this.props.selectedId)}</p>
                         </div>
                       </div>
                     </li>

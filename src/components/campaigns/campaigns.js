@@ -18,23 +18,19 @@ class Campaigns extends Component {
     } else return null;
   }
 
-  handleSelection = element => {
-    const items = document.getElementsByClassName("l-items");
-    for (let i = 0; i < items.length; i++) {
-      items[i].classList.remove("l-selection");
-    }
-    document.getElementById("campaign" + element).classList.add("l-selection");
-    this.props.selectedItem(element);
-  };
-
   render() {
     return (
       <div className="row">
+        {this.state.data.length === 0 ? (
+          <h6 className="text-muted p-3 g-no-selection">No campaigns here.</h6>
+        ) : (
+          ""
+        )}
         {this.state.data.map((x, index) => (
           <div
             key={x.id}
             id={"campaign" + x.id}
-            onClick={() => this.handleSelection(x.id)}
+            onClick={() => this.props.handleSelection(x.id)}
             className="col-12 pt-2 pb-2 l-items p-3 g-cursor-pointer"
           >
             <div className="col-1">
@@ -83,7 +79,7 @@ class Campaigns extends Component {
                 className="fa fa-trash g-fs-18"
                 title="Delete"
                 aria-hidden="true"
-                onClick={() => this.props.onDelete(x.id)}
+                onClick={e => this.props.onDelete(e, x.id)}
               />
             </div>
           </div>

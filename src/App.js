@@ -73,11 +73,17 @@ class App extends Component {
   }
 
   onNewClick = x => {
+    let newId;
+    if (this.state.data.length === 0) {
+      newId = 1;
+    } else {
+      newId = this.state.data[this.state.data.length - 1].id + 1;
+    }
     this.setState({
       data: [
         ...this.state.data,
         {
-          id: this.state.data[this.state.data.length - 1].id + 1,
+          id: newId,
           name: this.campaignNames[
             Math.floor(Math.random() * this.campaignNames.length)
           ],
@@ -171,18 +177,24 @@ class App extends Component {
     this.setState({ data: dataCopy });
   };
 
-  onDelete = id => {
-    this.setState({
-      data: this.state.data.filter(x => {
+  onDelete = (e, id) => {
+    e.stopPropagation();
+    this.setState(prevState => ({
+      data: prevState.data.filter(x => {
         if (x.id !== id) {
           return x;
         }
       }),
       selectedId: 0
-    });
+    }));
   };
 
-  selectedItem = id => {
+  handleSelection = id => {
+    const items = document.getElementsByClassName("l-items");
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.remove("l-selection");
+    }
+    document.getElementById("campaign" + id).classList.add("l-selection");
     this.setState({ selectedId: id });
   };
 
@@ -206,7 +218,7 @@ class App extends Component {
               onDelete={this.onDelete}
               onPause={this.onPause}
               onRename={this.onRename}
-              selectedItem={this.selectedItem}
+              handleSelection={this.handleSelection}
             />
           </div>
           <div className="col-4 l-history">
