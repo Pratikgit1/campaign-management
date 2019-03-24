@@ -23,8 +23,8 @@ class App extends Component {
         {
           id: 1,
           name: "Emails",
-          createdAt: "2:30 pm",
-          createdBy: "Chirag",
+          createdAt: this.formatTime(new Date()),
+          createdBy: "Jaya",
           isRenamed: false,
           isPaused: false,
           activity: [
@@ -39,8 +39,8 @@ class App extends Component {
         {
           id: 2,
           name: "Push notification",
-          createdAt: "2:30 pm",
-          createdBy: "Chirag",
+          createdAt: this.formatTime(new Date()),
+          createdBy: "Rekha",
           isRenamed: false,
           isPaused: false,
           activity: [
@@ -55,8 +55,8 @@ class App extends Component {
         {
           id: 3,
           name: "InApp Messages",
-          createdAt: "2:30 pm",
-          createdBy: "Chirag",
+          createdAt: this.formatTime(new Date()),
+          createdBy: "Sushma",
           isRenamed: false,
           isPaused: false,
           activity: [
@@ -87,7 +87,7 @@ class App extends Component {
           name: this.campaignNames[
             Math.floor(Math.random() * this.campaignNames.length)
           ],
-          createdAt: "2:30 pm",
+          createdAt: this.formatTime(new Date()),
           createdBy: this.userNames[
             Math.floor(Math.random() * this.userNames.length)
           ],
@@ -107,6 +107,17 @@ class App extends Component {
         }
       ]
     });
+  };
+
+  formatTime = date => {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    let strTime = hours + ":" + minutes + " " + ampm;
+    return date.toDateString() + ", " + strTime;
   };
 
   updatedData = data => {

@@ -22,7 +22,9 @@ class Campaigns extends Component {
     return (
       <div className="row">
         {this.state.data.length === 0 ? (
-          <h6 className="text-muted p-3 g-no-selection">No campaigns here.</h6>
+          <span className="text-muted p-3 g-no-selection">
+            No campaigns here.
+          </span>
         ) : (
           ""
         )}

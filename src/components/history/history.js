@@ -103,6 +103,13 @@ class History extends Component {
         <i className="fa fa-history mr-2 text-muted" aria-hidden="true" />{" "}
         <b className="text-muted">History</b>
         <div className="pt-2 pb-3">
+          {this.props.selectedId === 0 ? (
+            <span className="text-muted g-no-selection">
+              No campaigns selected.
+            </span>
+          ) : (
+            ""
+          )}
           <b>
             {this.props.selectedId > 0
               ? "Campaign " +
