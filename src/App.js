@@ -177,7 +177,8 @@ class App extends Component {
         if (x.id !== id) {
           return x;
         }
-      })
+      }),
+      selectedId: 0
     });
   };
 
