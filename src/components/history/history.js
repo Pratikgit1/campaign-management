@@ -84,7 +84,8 @@ class History extends Component {
   render() {
     return (
       <div className="l-align-history pt-4">
-        <i className="fa fa-history mr-2" aria-hidden="true" /> <b>History</b>
+        <i className="fa fa-history mr-2 text-muted" aria-hidden="true" />{" "}
+        <b className="text-muted">History</b>
         <div className="pt-2 pb-3">
           <b>
             {this.props.selectedId > 0
@@ -102,7 +103,7 @@ class History extends Component {
                   (item, index) => (
                     <li
                       className="timeline-inverted"
-                      key={item.code + index * 3}
+                      key={item.code + index * 3 + index * 2 + index}
                     >
                       <div
                         className={"timeline-badge " + this.getType(item.code)}

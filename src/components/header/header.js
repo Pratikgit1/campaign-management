@@ -9,8 +9,8 @@ class Header extends Component {
     return (
       <div className="row">
         <div className="col-12 l-header">
-          <i className="fa fa-envelope mr-2" aria-hidden="true" />{" "}
-          <b>All Campaigns</b>
+          <i className="fa fa-envelope mr-2 text-primary" aria-hidden="true" />{" "}
+          <b className="text-muted">All Campaigns</b>
         </div>
 
         <div className="col-12 p-3 l-section-end">
@@ -21,7 +21,7 @@ class Header extends Component {
             onClick={this.createNew}
           >
             {" "}
-            + Create new
+            + Create New
           </button>
         </div>
       </div>
