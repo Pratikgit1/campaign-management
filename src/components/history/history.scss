@@ -2,3 +2,23 @@
   width: 75%;
   margin: 0 auto;
 }
+
+.l-scroll-history {
+  height: 60vh;
+  overflow: auto;
+  width: 75%;
+}
+
+@media (min-width: 1920px) {
+  .l-scroll-history {
+    height: 75vh;
+    overflow: auto;
+  }
+}
+
+@media (min-width: 2560px) {
+  .l-scroll-history {
+    height: 80vh;
+    overflow: auto;
+  }
+}

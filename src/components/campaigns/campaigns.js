@@ -51,7 +51,7 @@ class Campaigns extends Component {
               </div>
             </div>
 
-            <div className="col-4">
+            <div className="col-4 text-center">
               {x.isPaused === false ? (
                 <i
                   className="fa fa-pause-circle-o mr-5 g-fs-18"

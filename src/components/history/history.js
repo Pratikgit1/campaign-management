@@ -85,7 +85,7 @@ class History extends Component {
     return (
       <div className="l-align-history pt-4">
         <i className="fa fa-history mr-2" aria-hidden="true" /> <b>History</b>
-        <div className="pt-2">
+        <div className="pt-2 pb-3">
           <b>
             {this.props.selectedId > 0
               ? "Campaign " +
@@ -95,26 +95,31 @@ class History extends Component {
               : ""}
           </b>
         </div>
-        <ul className="timeline mt-3">
-          {this.props.selectedId > 0
-            ? this.props.data[this.props.selectedId - 1].activity.map(
-                (item, index) => (
-                  <li className="timeline-inverted" key={item.code + index * 3}>
-                    <div
-                      className={"timeline-badge " + this.getType(item.code)}
+        <div className="l-scroll-history">
+          <ul className="timeline mt-3">
+            {this.props.selectedId > 0
+              ? this.props.data[this.props.selectedId - 1].activity.map(
+                  (item, index) => (
+                    <li
+                      className="timeline-inverted"
+                      key={item.code + index * 3}
                     >
-                      <i className={"fa " + this.getIcon(item.code)} />
-                    </div>
-                    <div className="timeline-panel">
-                      <div className="timeline-body">
-                        <p>{this.getBody(item)}</p>
+                      <div
+                        className={"timeline-badge " + this.getType(item.code)}
+                      >
+                        <i className={"fa " + this.getIcon(item.code)} />
                       </div>
-                    </div>
-                  </li>
+                      <div className="timeline-panel">
+                        <div className="timeline-body">
+                          <p>{this.getBody(item)}</p>
+                        </div>
+                      </div>
+                    </li>
+                  )
                 )
-              )
-            : ""}
-        </ul>
+              : ""}
+          </ul>
+        </div>
       </div>
     );
   }
